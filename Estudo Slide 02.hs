@@ -61,4 +61,46 @@ esquerda de um dado String, movendo o mesmo para a direita.-}
 paraDireita :: Int -> String -> String
 paraDireita num texto = (addEspacos num) ++ texto
 
+{-Escreva uma função para retornar, em forma de tabela, todas as
+vendas da semana 0 até a semana n, incluindo o total e a média de
+vendas no período. Usem as funções definidas previamente e
+defina novas funções que achar necessário.
+Semana Venda
+  0     12
+  1     14
+  2     15
+Total   41
+Média   13.6667-}
+
+totalVendas :: Int -> Int
+totalVendas a
+  | a == 0 = vendas 0
+  | otherwise = totalVendas (a - 1) + vendas a
+
+
+imprimeTabela :: Int->String
+imprimeTabela n = cabecalho 
+                ++ imprimeSemanas n 
+                ++ imprimeTotal n 
+                ++ imprimeMedia n
+
+
+cabecalho = "Semana Venda"
+
+imprimeSemanas :: Int -> String
+imprimeSemanas 0 = "  "++"0"++"     "++ show(vendas 0)
+imprimeSemanas n = "  "++show(n)++"     "++show(vendas n) ++ imprimeSemanas (n-1)
+
+imprimeTotal :: Int -> String
+imprimeTotal n = "Total   "
+                ++ show (totalVendas n)
+
+imprimeMedia :: Int -> String
+
+imprimeMedia n = "Media   " ++ show (media n)
+
+
+media a = totalVendas (a) / a
+
+
 
