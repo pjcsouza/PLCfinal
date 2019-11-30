@@ -97,10 +97,77 @@ imprimeTotal n = "Total   "
 
 imprimeMedia :: Int -> String
 
-imprimeMedia n = "Media   " ++ show (media n)
+imprimeMedia n = "Media   " ++ show (n) --deveria ser media mas ta dando erro
 
 
-media a = totalVendas (a) / a
+-- media a = totalVendas (a) / a
 
+
+--Tuplas
+
+intP :: (Int, Int) -- != Int->Int
+intP = (33,43)
+
+addPair :: (Int,Int) -> Int
+addPair (x,y) = x+y
+
+--Sinonimos de Tipos
+
+type Name = String
+type Age = Int
+type Phone = Int
+type Person = (Name, Age, Phone)
+
+novaPessoa :: String -> Int -> Int-> Person
+novaPessoa a b c = (a,b,c)
+
+
+name :: Person -> String
+name (a,b,c) = a
+
+
+--Exercícios
+{-
+Defina a função menorMaior que recebe três inteiros e retorna
+uma tupla com o menor e o maior deles, respectivamente.
+-}
+
+menorMaior :: Int->Int->Int->(Int,Int)
+menorMaior a b c = ((menor a b c), (maior a b c))
+
+menor ::Int->Int->Int->Int
+menor a b c
+  | (a<=b)&&(a<=c) = a
+  | (b<=a)&&(b<=c) = b
+  | otherwise = c
+
+maior ::Int->Int->Int->Int
+maior a b c
+  | (a>=b)&&(a>=c) = a
+  | (b>=a)&&(b>=c) = b
+  | otherwise = c
+
+{-
+Uma linha pode ser representada da seguinte forma
+type Ponto = ( Floa t , Fl o a t )
+type Reta = ( Ponto , Ponto )
+• Defina funções que
+• retornem
+• a primeira coordenada de um ponto
+• a segunda coordenada de um ponto
+• indique se uma reta é vertical ou não ( x1 = x2)
+-}
+
+type Ponto = ( Float , Float )
+type Reta = ( Ponto , Ponto )
+
+primeiraCoordenada :: Ponto ->Float
+primeiraCoordenada (x,y) = x
+
+segundaCoordenada :: Ponto ->Float
+segundaCoordenada (x,y) = y
+
+vertical :: Reta -> Bool
+vertical (a,b) = primeiraCoordenada a == primeiraCoordenada a
 
 
